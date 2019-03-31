@@ -1,0 +1,49 @@
+<header>
+	<div class="top-nav">
+		<div class="container-fluid">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand text-uppercase" href="{% url 'index'  %}">Doctor Of Plants<i class="fa fa-leaf"></i></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-center pr-md-4" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							{% if request.path == '/' %}
+							<a class="nav-link active" href="{% url 'index'  %}">Home<span class="sr-only">(current)</span></a>
+							{% else %}
+							<a class="nav-link" href="{% url 'index'  %}">Home<span class="sr-only">(current)</span></a>
+							{% endif %}
+						</li>
+						<li class="nav-item">
+							{% if request.path == '/newleaf/' %}
+							<a class="nav-link active" href="{% url 'newleaf'  %}">Check Your Leaf</a>
+							{% else %}
+							<a class="nav-link" href="{% url 'newleaf'  %}">Check Your Leaf</a>
+							{% endif %}
+							
+						</li>
+						<li class="nav-item">
+							{% if request.path == '/about/' %}
+							<a class="nav-link active" href="{% url 'about'  %}">About</a>
+							{% else %}
+							<a class="nav-link" href="{% url 'about'  %}">About</a>
+							{% endif %}
+							
+						</li>
+						<li class="nav-item">
+							{% if request.path == '/contact/' %}
+							<a class="nav-link active" href="{% url 'contact'  %}">Contact</a>
+							{% else %}
+							<a class="nav-link" href="{% url 'contact'  %}">Contact</a>
+							{% endif %}
+							
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+</header>
+								
+								

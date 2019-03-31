@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'assets/css/login.css' %}" type="text/css" media="all" />
+
+<section class="container jumbotron container2">
+
+<div class="container" align="justify">
+<p>
+        <img class="img-fluid rounded d-block mx-auto" src="{{details.leaf_image.url}}">
+        <div class="w3-head-all  py-md-3">
+                <h3 class="text-uppercase mt-4">{{details.leaf_data}}</h3>  
+            </div>
+        <a type="button" href="{% url 'newleaf'  %}" class="btn btn-danger">Check Another Leaf</a>
+</p></div></section>
+{% endblock body %}

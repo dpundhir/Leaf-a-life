@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3></h3>
+<div class="w3-head-all  py-md-3">
+            <h3 class="text-uppercase mt-4">Dashboard of {{request.user.username}}</h3>
+              
+      </div>
+      <div class="container jumbotron">
+      <h4>Welcome to your Dashboard. Here you can Manage your Articles by adding a new artcle or by editing an old one.</h4><br>
+<a class = "btn btn-success" href = "{% url 'article:addarticle' %}">Add Article</a>
+</div>
+{% if articles %}
+<div class="container jumbotron">
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for article in articles %}
+          <tr>
+            <th scope="row">{{article.id}}</th>
+            <td><a href="{% url 'article:detail' article.id %}">{{article.title}}</a></td>
+            <td>{{article.author.username}}</td>
+            <td>{{article.created_date}}</td>
+            <td><a href="{% url 'article:update' article.id %}" class = "btn btn-warning">Update</a></td>
+            <td><a href="{% url 'article:delete' article.id %}" class = "btn btn-danger">Delete</a> </td>
+              
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+      </div>
+{% else %}
+
+<div class = "alert alert-danger">
+  You have no articles yet ...
+
+</div>
+{% endif %}
+
+
+
+{% endblock body %}
+

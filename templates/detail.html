@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+<div class="row">
+
+    <!-- Post Content Column -->
+    <div class="col-lg-10 mx-auto">
+
+      <!-- Title -->
+          <div class="w3-head-all  py-md-3">
+            <h3 class="text-uppercase mt-4">{{article.title}}</h3>
+              
+      </div>
+      <!-- <h2 class="text-uppercase mt-4">{{article.title}}</h2> -->
+
+      <!-- Author -->
+      <!-- Preview Image -->
+      <div class="container jumbotron " style="text-align: justify;background-color:#d3cbcb;">
+          <p class="lead">
+              Published by {{article.author.username}}
+              <hr>{{article.created_date}}
+          </p>
+          <hr>
+        {% if article.article_image %}
+      <img class="img-fluid rounded d-block mx-auto" src="{{article.article_image.url}}" alt="">
+      {% endif %}
+      </div>
+      <!-- Post Content -->
+
+      <div class="container jumbotron " style="text-align: justify;background-color:#d3cbcb;">
+      <p class="lead">
+          {{article.content|safe}}
+      </p>
+      </div>
+      <div class="container jumbotron " style="text-align: justify;background-color:#d3cbcb;">
+      <!-- Date/Time -->
+
+      <h4>Comments</h4>
+      <hr>
+      {% if comments %}
+      {% for comment in comments  %}
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{comment.comment_author}}</h5>
+            {{comment.comment_date}} <br>
+            {{comment.comment_content}}
+          </div>
+        </div>
+      {% endfor %}
+      
+      
+      {% else %}
+      <div class ="alert alert-danger">
+        Be the first to write a review!
+      </div>
+      {% endif %}
+
+      <div class="card my-4">
+          <h5 class="card-header">Add Comment:</h5>
+          <div class="card-body">
+            <form method = "post" action = "{% url 'article:comment' article.id %}">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="formGroupExampleInput">Name</label>
+                  <input name = "comment_author" type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your name">
+                </div>
+              <div class="form-group">
+                  <label for="formGroupExampleInput">Comment</label>
+                <textarea name = "comment_content" class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-danger">Add</button>
+            </form>
+          </div>
+        </div>
+        </div>
+        </div>
+        
+      </div>
+
+      </div></div>
+
+{% endblock body %}
